@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.ad_title }}{% endblock %}
+
+
+{% block content %}
+        <div class="container">
+        <h3><p> {{ item.ad_title }} </p></h3>
+        <p class="author">Добавлено {{ item.author }} {{ item.pub_date }} </p>
+        <p class="author">Контакт: {{ item.author.email }}</p>
+        <p> {{ item.ad_text }} </p>
+        </div>
+                
+        {% if request.user == item.author or request.user.is_staff %}
+        <form action="./_edit/">
+        {% csrf_token %}
+        <button type="submit">Редактировать</button></form>
+        <form action="_delete/">
+        {% csrf_token %}
+        <button type="submit">Удалить</button></form>
+        {% endif %}
+{% endblock %}
+

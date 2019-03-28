@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css"
+     href="{% static "core/css/styles.css" %}">
+</head>
+
+<body id="bg"
+      style="background-image: url('{% static "core/background.png"%}')">
+    
+    <div class="nav_bar">
+        {% block header %}
+        <a href="/">Главная</a>
+        <a href="/new/">Новая запись</a>
+        {% if user.is_staff %}
+        <a href="/admin/">Панель администратора</a>
+        {% endif %}
+        <a href="/reg/">Регистрация</a>
+        {% if user.is_authenticated %}
+        <a href="/logout/">Выйти ({{ user }})</a>
+        {% else %}
+        <a href="/login/">Войти</a>
+        {% endif %}
+        {% endblock %}
+    </div>
+    <div class="body">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

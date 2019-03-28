@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}ТДО: регистрация пользователя{% endblock %}
+
+
+{% block content %}
+    <form action="/reg/" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <p class="input">{{ field.label }}:</p>
+        <p class="input">{{ field }}</p>
+        {% endfor %}
+        <input type="submit" value="OK">
+    </form>         
+{% endblock %}

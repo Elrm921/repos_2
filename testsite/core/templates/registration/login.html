@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}ТДО: авторизация{% endblock %}
+
+
+{% block content %}
+    <form action="/login/" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <p class="input">{{ field.label }}:</p>
+        <p class="input">{{ field }}</p>
+        {% endfor %}
+        <input type="submit" value="OK">
+    </form>              
+{% endblock %}
+

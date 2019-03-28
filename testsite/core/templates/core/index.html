@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Тестовая Доска Объявлений{% endblock %}
+
+
+{% block content %}
+    {% for i in items %}
+        <div class="container">
+        <h3><a href={{ i.pk }}> {{ i.ad_title }} </a></h3>
+        <p class="author"> от {{ i.author }} {{ i.pub_date }}</p>
+        <p> {{ i.ad_text|truncatechars:90 }} </p>
+        {% if not forloop.last %}
+        <hr size="1px" color="C4C4C4">
+        {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
